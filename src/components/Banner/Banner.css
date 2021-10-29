@@ -1,0 +1,152 @@
+.banner_item {
+    max-height: 700px;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner_content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-family: 'Quicksand', sans-serif;
+    padding-left: 100px;
+}
+
+.banner_content h1 {
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 90px;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.banner_content h4 {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.banner_btn {
+    position: relative;
+    background-color: #304D46;
+    color: #fff;
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    width: 135px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+    z-index: 10;
+}
+
+.banner_btn::before {
+    content: '';
+    width: 18%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background-color: var(--color-primary);
+    border-radius: 0 30px 30px 0;
+    transition: all 0.5s ease;
+    z-index: -1;
+}
+
+.banner_btn:hover::before {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.slider_arrow {
+    position: absolute;
+    top: 50%;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.slider_prev {
+    left: 25px;
+}
+
+.slider_next {
+    right: 25px;
+}
+
+.slider_arrow .arrow_icon {
+    width: 30px !important;
+    height: 30px !important;
+}
+
+.slider_prev .arrow_icon {
+    margin-right: 5px;
+}
+
+@media only screen and (max-width:900px) {
+    .banner_content h1 {
+        font-weight: 700;
+        font-size: 55px;
+        line-height: 60px;
+        max-width: 415px;
+        margin-bottom: 15px;
+    }
+
+    .banner_content h4 {
+        font-size: 30px;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .banner_content {
+        padding-left: 30px;
+    }
+
+    .banner_content h1 {
+        font-size: 32px;
+        line-height: 35px;
+    }
+
+    .banner_content h4 {
+        font-size: 25px;
+    }
+
+    .slider_arrow {
+        display: none;
+    }
+
+    .banner_btn {
+        height: 45px;
+    }
+}
+
+@media only screen and (max-width:350px) {
+    .banner_content {
+        padding-left: 15px;
+    }
+
+    .banner_content h1 {
+        font-size: 25px;
+        line-height: 25px;
+        margin-bottom: 10px;
+    }
+
+    .banner_content h4 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+}
