@@ -50,7 +50,7 @@ const Testimonial = () => {
             <Container fixed>
                 <div className="section_header">
                     <p>Our Traveller Say</p>
-                    <h2>What Oue Traveller Say About Us</h2>
+                    <h2>What Our Traveller Say About Us</h2>
                 </div>
                 <div className="testimonial_slider_wrapper">
                     <Slider {...settings}>
