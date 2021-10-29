@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Header.css';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -12,12 +12,17 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
-
+import useAuth from '../../hooks/useAuth';
+import axios from 'axios';
+import useOrders from '../../hooks/useOrders';
 
 const Header = () => {
+
+    const { user, logOutController } = useAuth();
+
+    const { orders } = useOrders();
 
     const [menuOpen, setMenuOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -28,6 +33,11 @@ const Header = () => {
     const handleMenuIconClose = () => {
         setAnchorEl(null);
     };
+    const handleLogout = () => {
+        logOutController()
+    }
+
+
     return (
         <header className="header">
             <Container fixed>
@@ -60,11 +70,15 @@ const Header = () => {
                                         <NavLink exact to="/contact" activeClassName="active">Contact Us</NavLink>
                                     </li>
 
-                                    <IconButton onClick={handleMenuIconClick} size="small">
-                                        <Avatar sx={{ width: 32, height: 32 }}>
-                                            H
-                                        </Avatar>
-                                    </IconButton>
+                                    {user.email || user.displayName ? (
+                                        <IconButton onClick={handleMenuIconClick} size="small">
+                                            <Avatar sx={{ width: 32, height: 32 }}>
+                                                {user?.displayName?.substr(0, 1).toUpperCase()}
+                                            </Avatar>
+                                        </IconButton>
+                                    ) : ''}
+
+
                                     <Menu
                                         anchorEl={anchorEl}
                                         open={open}
@@ -99,10 +113,17 @@ const Header = () => {
                                         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                                     >
+
                                         <MenuItem>
-                                            <Link exact to="/my-orders" className="menu_link">My Orders</Link>
+                                            <Avatar /> Hello {user?.displayName?.split(' ')[0]}
                                         </MenuItem>
                                         <MenuItem>
+                                            <Avatar sx={{
+                                                backgroundColor: 'var(--color-primary)'
+                                            }} >{orders.length}</Avatar >
+                                            <Link to="/my-orders" className="menu_link">My Orders</Link>
+                                        </MenuItem>
+                                        <MenuItem onClick={handleLogout}>
                                             <ListItemIcon>
                                                 <Logout fontSize="small" />
                                             </ListItemIcon>
@@ -110,13 +131,13 @@ const Header = () => {
                                         </MenuItem>
                                         <Divider />
                                         <MenuItem>
-                                            <Link exact to="/all-orders" className="menu_link">All Orders</Link>
+                                            <Link to="/all-orders" className="menu_link">All Orders</Link>
                                         </MenuItem>
                                         <MenuItem>
                                             <ListItemIcon>
                                                 <AddCircleIcon fontSize="small" />
                                             </ListItemIcon>
-                                            <Link exact to="/packages/add" className="menu_link">Add new package</Link>
+                                            <Link to="/packages/add" className="menu_link">Add new package</Link>
                                         </MenuItem>
 
 
@@ -124,9 +145,13 @@ const Header = () => {
                                 </ul>
                             </nav>
 
-                            <div className="header_actions" onClick={() => setMenuOpen(false)}>
-                                <Link to="/login" className="btn btn_primary">Login</Link>
-                            </div>
+                            {!user.email || !user.displayName ? (
+                                <div className="header_actions" onClick={() => setMenuOpen(false)}>
+                                    <Link to="/login" className="btn btn_primary">Login</Link>
+                                </div>
+                            ) : ''}
+
+
 
                         </div>
 

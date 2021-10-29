@@ -1,25 +1,68 @@
 import { Container, Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import Loading from '../../components/Loading/Loading';
 import PageBanner from '../../components/PageBanner/PageBanner';
-import { packages } from '../../fakeData';
 import RoomIcon from '@mui/icons-material/Room';
 import './SinglePackage.css';
+import axios from 'axios';
+import useAuth from '../../hooks/useAuth';
+import { errorNotify, successNotify } from '../../utils/toastify';
+import useOrders from '../../hooks/useOrders';
 
 const SinglePackage = () => {
+
+    const { orders, setOrders } = useOrders();
     const { id } = useParams();
+    const { user } = useAuth();
+    const history = useHistory();
 
     const [singlePackage, setSinglePackage] = useState({});
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+
+    const [bookingInfo, setBookingInfo] = useState({
+        name: user?.displayName || '',
+        email: user?.email || '',
+        phone: '',
+        address: '',
+        date: '',
+        message: ''
+    });
+
+    const handleBooking = async (e) => {
+        e.preventDefault();
+        const bookingData = {
+            userId: user._id,
+            ...bookingInfo,
+            package: singlePackage._id
+        }
+
+        try {
+            const { data } = await axios.post('http://localhost:8000/api/orders/add', bookingData);
+            if (data._id) {
+                setOrders([...orders, data])
+                successNotify('Booking Successful.');
+                history.push('/my-orders')
+            }
+        } catch (error) {
+            console.log(error);
+            errorNotify('Opps, Something went wrong!');
+        }
+    }
 
     useEffect(() => {
 
-        const getSinglePackage = () => {
-            setLoading(true);
-            const findPackge = packages.find(pack => pack._id === id);
-            setSinglePackage(findPackge);
-            setLoading(false);
+        const getSinglePackage = async () => {
+            try {
+                const { data } = await axios.get(`http://localhost:8000/api/packages/${id}`);
+
+                setSinglePackage(data);
+                setLoading(false);
+            } catch (error) {
+                console.log(error);
+                setLoading(false);
+            }
+
         };
         getSinglePackage();
 
@@ -41,7 +84,7 @@ const SinglePackage = () => {
 
                                         <div className="single_package_content">
                                             <h2>{singlePackage.title} </h2>
-                                            <p className="single_package_meta">
+                                            <div className="single_package_meta">
                                                 <p className="single_package_location">
                                                     <RoomIcon />
                                                     {singlePackage.location}
@@ -52,7 +95,7 @@ const SinglePackage = () => {
                                                 <p className="single_package_price">
                                                     ${singlePackage.price} /Per Person
                                                 </p>
-                                            </p>
+                                            </div>
 
                                             <p className="package_overview">
                                                 {singlePackage.description}
@@ -64,14 +107,20 @@ const SinglePackage = () => {
                                 <Grid item md={4} xs={12} >
                                     <div className="package_booking_wrapper">
                                         <h2>Book This Package</h2>
-                                        <form action="" className="package_booking_form">
+                                        <form
+                                            action=""
+                                            className="package_booking_form"
+                                            onSubmit={handleBooking}
+                                        >
                                             <div className="input_group">
                                                 <input
                                                     type="text"
                                                     className="form_control"
                                                     placeholder="Your Full Name"
-                                                    name="userName"
+                                                    name="name"
                                                     required
+                                                    value={bookingInfo.name}
+                                                    onChange={(e) => setBookingInfo({ ...bookingInfo, name: e.target.value })}
                                                 />
                                             </div>
                                             <div className="input_group">
@@ -81,6 +130,8 @@ const SinglePackage = () => {
                                                     placeholder="Email Address"
                                                     name="email"
                                                     required
+                                                    value={bookingInfo.email}
+                                                    onChange={(e) => setBookingInfo({ ...bookingInfo, email: e.target.value })}
                                                 />
                                             </div>
                                             <div className="input_group">
@@ -90,6 +141,19 @@ const SinglePackage = () => {
                                                     placeholder="Phone Number"
                                                     name="phone"
                                                     required
+                                                    value={bookingInfo.phone}
+                                                    onChange={(e) => setBookingInfo({ ...bookingInfo, phone: e.target.value })}
+                                                />
+                                            </div>
+                                            <div className="input_group">
+                                                <input
+                                                    type="text"
+                                                    className="form_control"
+                                                    placeholder="Your Address"
+                                                    name="address"
+                                                    required
+                                                    value={bookingInfo.address}
+                                                    onChange={(e) => setBookingInfo({ ...bookingInfo, address: e.target.value })}
                                                 />
                                             </div>
                                             <div className="input_group">
@@ -99,6 +163,8 @@ const SinglePackage = () => {
                                                     placeholder="Date"
                                                     name="date"
                                                     required
+                                                    value={bookingInfo.date}
+                                                    onChange={(e) => setBookingInfo({ ...bookingInfo, date: e.target.value })}
                                                 />
                                             </div>
                                             <div className="input_group">
@@ -106,10 +172,12 @@ const SinglePackage = () => {
                                                     className="form_control"
                                                     placeholder="Message"
                                                     name="message"
+                                                    value={bookingInfo.message}
+                                                    onChange={(e) => setBookingInfo({ ...bookingInfo, message: e.target.value })}
                                                 />
                                             </div>
                                             <div className="booking_submit">
-                                                <button className="btn btn_primary">Submit</button>
+                                                <button className="btn btn_primary" type="submit">Submit</button>
                                             </div>
                                         </form>
                                     </div>

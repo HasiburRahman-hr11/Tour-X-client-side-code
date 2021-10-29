@@ -1,23 +1,86 @@
 import React, { useState } from 'react';
 import Container from '@mui/material/Container';
 import googleIcon from '../../images/google-icon.png';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import axios from 'axios';
+import { CircularProgress } from '@mui/material';
 
 const Login = () => {
+
+    const { googleSignIn, setUser, setError } = useAuth();
+    const location = useLocation();
+    const history = useHistory();
+    const path = location.state?.from.pathname || '/';
+
     const [formData, setFormData] = useState({
         email: '',
         password: ''
-    })
+    });
+    const [loading, setLoading] = useState(false);
+    const [serverError, setServerError] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSignIn = async (e) => {
         e.preventDefault();
-        console.log(formData)
+        setLoading(true)
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, formData.email, formData.password)
+            .then((result) => {
+                const user = result.user;
+                setUser(user)
+                const userInfo = {
+                    email: user.email,
+                    userName: user.displayName
+                }
+                createUserToDb(userInfo);
+                history.push(path);
+                setLoading(false)
+            })
+            .catch((error) => {
+                console.log(error.message)
+                setError(error)
+                setServerError(error.message)
+                setLoading(false)
+            });
+
     }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then((result) => {
+
+                const userInfo = {
+                    email: result.user.email || '',
+                    userName: result.user?.displayName || ''
+                }
+                createUserToDb(userInfo);
+                history.push(path);
+            })
+            .catch(error => {
+                setError(error);
+            })
+    }
+
+    // Create new user in the database
+    const createUserToDb = async (userInfo) => {
+        const { data } = await axios.post('http://localhost:8000/api/auth/register', userInfo);
+        const userData = {
+            _id: data._id,
+            email: data.email,
+            displayName: data.userName
+        }
+        if (data._id) {
+            setUser(userData);
+            localStorage.setItem('tour-x-user' , JSON.stringify(userData));
+        }
+    }
+
     return (
         <div className="page auth_page">
             <Container fixed>
                 <div className="auth_page_wrapper">
-                    <form action="" className="auth_form" onSubmit={handleSubmit}>
+                    <form action="" className="auth_form" onSubmit={handleSignIn}>
                         <h3 className="auth_title">Login</h3>
                         <div className="input_group">
                             <input
@@ -42,8 +105,26 @@ const Login = () => {
                             />
                         </div>
 
+                        {serverError && (
+                            <div style={{
+                                margin: '20px 0',
+                                textAlign: 'center'
+                            }}>
+                                <p className="auth_error" style={{ fontSize: '15px' }}>{serverError}</p>
+                            </div>
+                        )}
+
                         <div className="auth_submit">
-                            <button className="btn btn_primary">Login</button>
+                            <button type="submit" className="btn btn_primary">
+                                {loading ? (
+                                    <CircularProgress sx={{
+                                        color: '#fff',
+                                        width: '25px !important',
+                                        height: '25px !important'
+                                    }}
+                                    />
+                                ) : 'Login'}
+                            </button>
                         </div>
 
                         <div className="auth_toggler">
@@ -52,7 +133,7 @@ const Login = () => {
 
                         <div className="auth_alter">
                             <p>OR</p>
-                            <button className="google_btn">
+                            <button type="button" className="google_btn" onClick={handleGoogleSignIn}>
                                 <img src={googleIcon} alt="Google" />
                                 Continue with Google
                             </button>

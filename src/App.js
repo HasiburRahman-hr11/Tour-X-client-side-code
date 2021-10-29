@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
@@ -9,11 +9,18 @@ import Register from './pages/Register/Register';
 import SinglePackage from './pages/SinglePackage/SinglePackage';
 import MyOrders from './pages/MyOrders/MyOrders';
 import AllOrders from './pages/AllOrders/AllOrders';
+import PrivateRoute from './utils/PrivateRoute';
+import useAuth from './hooks/useAuth';
+import AddNewPackage from './pages/AddNewPackage/AddNewPackage';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
+  const { user } = useAuth();
   return (
     <BrowserRouter>
       <Header />
+      <ToastContainer />
       <Switch>
         <Route exact path="/">
           <Home />
@@ -21,21 +28,30 @@ const App = () => {
         <Route exact path="/packages">
           <Packages />
         </Route>
-        <Route exact path="/packages/:id">
+        <PrivateRoute exact path="/packages/add">
+          <AddNewPackage />
+        </PrivateRoute>
+        <PrivateRoute exact path="/packages/:id">
           <SinglePackage />
-        </Route>
-        <Route exact path="/my-orders">
+        </PrivateRoute>
+        <PrivateRoute exact path="/my-orders">
           <MyOrders />
-        </Route>
-        <Route exact path="/all-orders">
+        </PrivateRoute>
+        <PrivateRoute exact path="/all-orders">
           <AllOrders />
+        </PrivateRoute>
+
+        <Route path="/register">
+          {!user.email || !user.displayName
+            ? (<Register />)
+            : (<Redirect to="/" />)}
         </Route>
-        <Route exact path="/login">
-          <Login />
+        <Route path="/login">
+          {!user.email || !user.displayName
+            ? (<Login />)
+            : (<Redirect to="/" />)}
         </Route>
-        <Route exact path="/register">
-          <Register />
-        </Route>
+
       </Switch>
       <Footer />
     </BrowserRouter>

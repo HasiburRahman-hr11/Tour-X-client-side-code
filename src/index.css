@@ -146,6 +146,11 @@ button {
   height: 45px;
   padding-left: 10px;
 }
+.auth_error{
+  font-size: 13px;
+  margin-top: 5px;
+  color: #fc3d3d;
+}
 
 /* input.form_control[type="date"] {
   color: #bbb;
@@ -161,7 +166,7 @@ textarea.form_control {
 }
 
 .form_control::placeholder {
-  color: #bbb;
+  color: #a0a0a0;
 }
 
 .form_control:focus {
@@ -171,7 +176,9 @@ textarea.form_control {
 .auth_submit {
   text-align: center;
 }
-
+.auth_submit .btn{
+  min-width: 100px;
+}
 .auth_alter p {
   margin: 15px 0;
   text-align: center;
@@ -209,6 +216,17 @@ textarea.form_control {
   top: 2px;
 }
 
+.no_order{
+  padding: 50px 0;
+  text-align: center;
+}
+.no_order h2{
+  font-size: 22px;
+  color: #444;
+}
+.no_order .btn{
+  margin-top: 20px;
+}
 @media only screen and (max-width:600px) {
   .section_header h2 {
     font-size: 27px;
