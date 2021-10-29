@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import { packages } from '../../fakeData';
 import Package from '../../components/Package/Package';
 import PageBanner from '../../components/PageBanner/PageBanner';
-import pageBannerBg from '../../images/banner1.jpg';
+import pageBannerBg from '../../images/pageBanner/package-page.jpg';
 
 const Packages = () => {
     return (

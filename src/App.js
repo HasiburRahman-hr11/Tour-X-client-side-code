@@ -7,6 +7,8 @@ import Packages from './pages/Packages/Packages';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import SinglePackage from './pages/SinglePackage/SinglePackage';
+import MyOrders from './pages/MyOrders/MyOrders';
+import AllOrders from './pages/AllOrders/AllOrders';
 
 const App = () => {
   return (
@@ -21,6 +23,12 @@ const App = () => {
         </Route>
         <Route exact path="/packages/:id">
           <SinglePackage />
+        </Route>
+        <Route exact path="/my-orders">
+          <MyOrders />
+        </Route>
+        <Route exact path="/all-orders">
+          <AllOrders />
         </Route>
         <Route exact path="/login">
           <Login />

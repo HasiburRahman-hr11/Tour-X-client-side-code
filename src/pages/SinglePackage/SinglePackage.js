@@ -39,11 +39,19 @@ const SinglePackage = () => {
                                     <div className="package_details">
                                         <img src={singlePackage.thumbnail} alt={singlePackage.title} />
 
-                                        <div className="package_content">
+                                        <div className="single_package_content">
                                             <h2>{singlePackage.title} </h2>
-                                            <p className="package_location">
-                                                <RoomIcon />
-                                                {singlePackage.location}
+                                            <p className="single_package_meta">
+                                                <p className="single_package_location">
+                                                    <RoomIcon />
+                                                    {singlePackage.location}
+                                                </p>
+                                                <p className="single_package_duration">
+                                                    {singlePackage.duration}
+                                                </p>
+                                                <p className="single_package_price">
+                                                    ${singlePackage.price} /Per Person
+                                                </p>
                                             </p>
 
                                             <p className="package_overview">

@@ -64,12 +64,19 @@ button {
   padding: 8px 23px;
   font-size: 16px;
   border-radius: 5px;
+  font-weight: 600;
 }
 
 .btn_primary {
   background-color: var(--color-primary);
   color: #fff;
   border: 1px solid var(--color-primary);
+}
+
+.btn_secondary {
+  background-color: #e5e5e5;
+  color: #444;
+  border: 1px solid #f1f1f1;
 }
 
 .section {
@@ -150,6 +157,7 @@ input.form_control[type="date"]:focus {
 
 textarea.form_control {
   min-height: 150px;
+  padding-top: 5px;
 }
 
 .form_control::placeholder {
