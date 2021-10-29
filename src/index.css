@@ -69,10 +69,19 @@ button {
 .btn_primary {
   background-color: var(--color-primary);
   color: #fff;
+  border: 1px solid var(--color-primary);
 }
 
 .section {
   padding: 70px 0;
+}
+
+.page_content {
+  padding: 70px 0;
+}
+
+.page_banner {
+  font-family: 'Quicksand', sans-serif;
 }
 
 .section_header {
@@ -95,6 +104,101 @@ button {
   max-width: 500px;
   margin: 0 auto;
   color: #444;
+}
+
+/* Login and Registration Page */
+.auth_page {
+  padding: 70px 0;
+}
+
+.auth_page_wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.auth_title {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #666;
+  text-align: center;
+  font-weight: 600;
+}
+
+.input_group {
+  margin-bottom: 20px;
+}
+
+.form_control {
+  background-color: transparent;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  height: 45px;
+  padding-left: 10px;
+}
+
+/* input.form_control[type="date"] {
+  color: #bbb;
+}
+
+input.form_control[type="date"]:focus {
+  color: #000;
+} */
+
+textarea.form_control {
+  min-height: 150px;
+}
+
+.form_control::placeholder {
+  color: #bbb;
+}
+
+.form_control:focus {
+  border-color: #999;
+}
+
+.auth_submit {
+  text-align: center;
+}
+
+.auth_alter p {
+  margin: 15px 0;
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+}
+
+.auth_toggler {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 20px;
+  color: #444;
+}
+
+.auth_toggler a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.google_btn {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 25px;
+  height: 40px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  position: relative;
+}
+
+.google_btn img {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
 }
 
 @media only screen and (max-width:600px) {

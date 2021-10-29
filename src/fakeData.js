@@ -45,6 +45,7 @@ export const packages = [
         description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
         price: '350',
         duration: '5 Days 6 Nights',
+        location: 'Paris',
         thumbnail: package1
     },
     {
@@ -53,6 +54,7 @@ export const packages = [
         description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
         price: '430',
         duration: '6 Days 7 Nights',
+        location: 'Italy',
         thumbnail: package2
     },
     {
@@ -61,6 +63,7 @@ export const packages = [
         description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
         price: '320',
         duration: '4 Days 5 Nights',
+        location: 'Italy',
         thumbnail: package3
     },
     {
@@ -69,6 +72,7 @@ export const packages = [
         description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
         price: '300',
         duration: '5 Days 6 Nights',
+        location: 'Italy',
         thumbnail: package4
     },
     {
@@ -77,6 +81,7 @@ export const packages = [
         description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
         price: '290',
         duration: '3 Days 4 Nights',
+        location: 'France',
         thumbnail: package5
     },
     {
@@ -85,6 +90,7 @@ export const packages = [
         description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
         price: '350',
         duration: '5 Days 6 Nights',
+        location: 'France',
         thumbnail: banner2
     }
 ];

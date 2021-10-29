@@ -1,0 +1,47 @@
+.package_details {
+    box-shadow: rgba(0, 0, 0, 0.05) 20px 20px 30px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.package_details img {
+    max-height: 450px;
+}
+
+.package_content h2 {
+    font-size: 28px;
+    font-family: "Quicksand", sans-serif;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.package_content .package_location {
+    display: flex;
+    align-items: center;
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.package_booking_wrapper {
+    background-color: #fff;
+    padding: 25px 20px;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.package_booking_wrapper h2 {
+    font-size: 22px;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.booking_submit {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.booking_submit .btn {
+    padding: 10px 30px;
+}

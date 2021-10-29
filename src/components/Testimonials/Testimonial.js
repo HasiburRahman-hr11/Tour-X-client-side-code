@@ -11,7 +11,7 @@ const Testimonial = () => {
         arrows: false,
         infinite: true,
         autoplay: true,
-        speed: 1000,
+        speed: 2000,
         autoplaySpeed: 3000,
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -22,8 +22,7 @@ const Testimonial = () => {
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
-                    infinite: true,
-                    dots: true
+                    initialSlide: 3
                 }
             },
             {
@@ -50,7 +49,7 @@ const Testimonial = () => {
             <Container fixed>
                 <div className="section_header">
                     <p>Our Traveller Say</p>
-                    <h2>What Our Traveller Say About Us</h2>
+                    <h2>What Our Travellers Say About Us</h2>
                 </div>
                 <div className="testimonial_slider_wrapper">
                     <Slider {...settings}>
