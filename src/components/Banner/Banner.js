@@ -2,7 +2,6 @@ import React from 'react';
 import './Banner.css';
 import { Link } from 'react-router-dom';
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
 import { banner } from '../../fakeData';
 import Container from '@mui/material/Container';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';

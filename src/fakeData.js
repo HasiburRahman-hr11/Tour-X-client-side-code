@@ -9,6 +9,11 @@ import package3 from './images/package3.jpg';
 import package4 from './images/package4.jpg';
 import package5 from './images/package5.jpg';
 
+import testImag1 from './images/team-1.jpg';
+import testImag2 from './images/team-2.jpg';
+import testImag3 from './images/team-3.jpg';
+import testImag4 from './images/team-4.jpg';
+
 export const banner = [
     {
         title: 'Amazing Tour in Indonesia',
@@ -35,51 +40,75 @@ export const banner = [
 
 export const packages = [
     {
-        _id:'01',
+        _id: '01',
         title: 'Paris Hill Tour',
         description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
         price: '350',
         duration: '5 Days 6 Nights',
-        thumbnail:package1
+        thumbnail: package1
     },
     {
-        _id:'02',
+        _id: '02',
         title: 'Lake Garda, Italy',
         description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
         price: '430',
         duration: '6 Days 7 Nights',
-        thumbnail:package2
+        thumbnail: package2
     },
     {
-        _id:'03',
+        _id: '03',
         title: 'Mount Datna, Italy',
         description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
         price: '320',
         duration: '4 Days 5 Nights',
-        thumbnail:package3
+        thumbnail: package3
     },
     {
-        _id:'04',
+        _id: '04',
         title: 'Amalfi Costa, Italy',
         description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
         price: '300',
         duration: '5 Days 6 Nights',
-        thumbnail:package4
+        thumbnail: package4
     },
     {
-        _id:'05',
+        _id: '05',
         title: 'French Rivira, France',
         description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
         price: '290',
         duration: '3 Days 4 Nights',
-        thumbnail:package5
+        thumbnail: package5
     },
     {
-        _id:'06',
+        _id: '06',
         title: 'Lake Geneva, France',
         description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
         price: '350',
         duration: '5 Days 6 Nights',
-        thumbnail:banner2
+        thumbnail: banner2
+    }
+];
+
+
+export const testimonials = [
+    {
+        name: 'Dina Jems',
+        description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
+        image: testImag1
+    },
+    {
+        name: 'John Smith',
+        description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
+        image: testImag2
+    },
+    {
+        name: 'Alison Adams',
+        description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
+        image: testImag3
+    },
+    {
+        name: 'Rebeka Adkins',
+        description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
+        image: testImag4
     }
 ]
