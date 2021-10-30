@@ -1,0 +1,29 @@
+.contact_form_title {
+    font-size: 30px;
+    margin-bottom: 20px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.contact_content{
+    padding-top: 50px;
+}
+.contact_content h2 {
+    font-size: 23px;
+    font-family: 'Quicksand', sans-serif;
+    margin-bottom: 15px;
+}
+
+.contact_content p {
+    font-size: 16px;
+    line-height: 27px;
+    color: #737679;
+}
+.contact_address  span{
+    margin-right: 2px;
+}
+.contact_address a{
+    transition: all 0.4s;
+}
+.contact_address a:hover{
+    color: var(--color-primary);
+}
