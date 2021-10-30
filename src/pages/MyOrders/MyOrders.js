@@ -46,18 +46,18 @@ const MyOrders = () => {
     useEffect(() => {
 
         const getOrderedPackages = (data) => {
-            const packagesArray = [];
-            for (let order of data) {
-                const pack = packages.find(item => item._id === order.package);
-                if (pack) {
-                    pack.orderId = order._id;
-                    if (!packagesArray.includes(pack)) {
-                        packagesArray.push(pack)
-                    }
+            const ordersArray = [];
+            userOrders.forEach(order => {
+                if (order.package) {
+                    let orderObj = {}
+                    orderObj.orderedPackage = packages.find(item => item._id === order.package);
+                    orderObj.orderId = order._id;
+                    orderObj.status = order.status;
+                    ordersArray.push(orderObj)
                 }
 
-            }
-            setOrderedPackages(packagesArray)
+            })
+            setOrderedPackages(ordersArray)
         }
 
         getOrderedPackages(userOrders);
@@ -81,24 +81,24 @@ const MyOrders = () => {
                                 <Grid container spacing={4}>
                                     {orderedPackages.map(order => (
                                         <Grid
-                                            key={order._id}
+                                            key={order.orderId}
                                             item
                                             sm={6}
                                             xs={12}
                                         >
                                             <div className="order_item">
                                                 <div className="order_image">
-                                                    <img src={order.thumbnail} alt="" />
+                                                    <img src={order.orderedPackage.thumbnail} alt="" />
                                                 </div>
                                                 <div className="order_content">
                                                     <div>
                                                         <h4>
-                                                            <Link to={`/packages/${order._id}`}>{order.title}</Link>
+                                                            <Link to={`/packages/${order.orderedPackage._id}`}>{order.orderedPackage.title}</Link>
                                                         </h4>
                                                         <p>
-                                                            <span className="order_duration">{order.duration}
+                                                            <span className="order_duration">{order.orderedPackage.duration}
                                                             </span>
-                                                            <span className="order_price">${order.price}</span>
+                                                            <span className="order_price">${order.orderedPackage.price}</span>
                                                         </p>
 
                                                     </div>
@@ -108,11 +108,11 @@ const MyOrders = () => {
                                                             title="Cancel Order"
                                                             onClick={() => handleCancelOrder(order.orderId)}
                                                         >Cancel</button> */}
-                                                        <DeleteOutlineIcon 
+                                                        <DeleteOutlineIcon
                                                             onClick={() => handleCancelOrder(order.orderId)}
                                                             className="order_action_icon"
                                                             title="Delete Order"
-                                                            />
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>

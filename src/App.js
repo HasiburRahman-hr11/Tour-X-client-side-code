@@ -14,6 +14,7 @@ import useAuth from './hooks/useAuth';
 import AddNewPackage from './pages/AddNewPackage/AddNewPackage';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
+import EditOrder from './pages/EditOrder/EditOrder';
 
 const App = () => {
   const { user } = useAuth();
@@ -36,6 +37,9 @@ const App = () => {
         </PrivateRoute>
         <PrivateRoute exact path="/my-orders">
           <MyOrders />
+        </PrivateRoute>
+        <PrivateRoute exact path="/edit-order/:orderId">
+          <EditOrder />
         </PrivateRoute>
         <PrivateRoute exact path="/all-orders">
           <AllOrders />

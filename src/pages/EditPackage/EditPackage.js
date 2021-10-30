@@ -7,7 +7,7 @@ import axios from 'axios';
 import { CircularProgress } from '@mui/material';
 import {errorNotify, successNotify} from '../../utils/toastify';
 
-const AddNewPackage = () => {
+const EditPackage = () => {
 
     const [packageData, setPackageData] = useState({
         title: '',
@@ -154,4 +154,4 @@ const AddNewPackage = () => {
     );
 };
 
-export default AddNewPackage;
+export default EditPackage;

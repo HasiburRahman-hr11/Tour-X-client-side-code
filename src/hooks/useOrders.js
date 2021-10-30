@@ -25,7 +25,7 @@ const useOrders = () => {
 
         const getUsersOrder = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:8000/api/orders/${user._id}`);
+                const { data } = await axios.get(`http://localhost:8000/api/orders/user/${user._id}`);
                 setUserOrders(data);
                 setLoading(false);
             } catch (error) {

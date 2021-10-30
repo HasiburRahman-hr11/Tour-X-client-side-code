@@ -41,7 +41,8 @@ img {
 }
 
 input,
-textarea {
+textarea ,
+select{
   outline: 0;
   width: 100%;
   font-size: 16px;
@@ -172,7 +173,13 @@ textarea.form_control {
 .form_control:focus {
   border-color: #999;
 }
-
+label.form_control_label{
+  width: 100%;
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #444;
+}
 .auth_submit {
   text-align: center;
 }
@@ -227,6 +234,13 @@ textarea.form_control {
 .no_order .btn{
   margin-top: 20px;
 }
+
+.add_package_title{
+  text-align: center;
+  margin-bottom: 30px;
+  color: #444;
+}
+
 @media only screen and (max-width:600px) {
   .section_header h2 {
     font-size: 27px;

@@ -45,15 +45,19 @@ const AllOrders = () => {
     useEffect(() => {
 
         const getOrderedPackages = () => {
-            const packagesArray = [];
+            const ordersArray = [];
             orders.forEach(order => {
-                const pack = packages.find(item => item._id === order.package);
-                if (pack) {
-                    pack.status = order.status;
+                if (order.package) {
+                    let orderObj = {}
+                    orderObj.orderedPackage = packages.find(item => item._id === order.package);
+                    orderObj.orderId = order._id;
+                    orderObj.bookedBy = order.name;
+                    orderObj.status = order.status;
+                    ordersArray.push(orderObj)
                 }
-                packagesArray.push(pack)
+
             })
-            setOrderedPackages(packagesArray)
+            setOrderedPackages(ordersArray)
         }
         getOrderedPackages()
     }, [packages, orders])
@@ -75,24 +79,27 @@ const AllOrders = () => {
                                 <Grid container spacing={4}>
                                     {orderedPackages.map((order, index) => (
                                         <Grid
-                                            key={index}
+                                            key={order.orderId}
                                             item
                                             sm={6}
                                             xs={12}
                                         >
                                             <div className="order_item">
                                                 <div className="order_image">
-                                                    <img src={order.thumbnail} alt="" />
+                                                    <img src={order.orderedPackage.thumbnail} alt="" />
                                                 </div>
                                                 <div className="order_content">
                                                     <div>
                                                         <h4>
-                                                            <Link to={`/packages/${order._id}`}>{order.title}</Link>
+                                                            <Link to={`/packages/${order.orderedPackage._id}`}>{order.orderedPackage.title}</Link>
                                                         </h4>
                                                         <p>
-                                                            <span className="order_duration">{order.duration}
+                                                            <span className="order_duration">{order.orderedPackage.duration}
                                                             </span>
-                                                            <span className="order_price">${order.price}</span>
+                                                            <span className="order_price">${order.orderedPackage.price}</span>
+                                                        </p>
+                                                        <p className="order_bookedBy">
+                                                            Booked by: <strong>{order.bookedBy}</strong>
                                                         </p>
 
                                                     </div>
@@ -104,7 +111,9 @@ const AllOrders = () => {
                                                                 className="order_action_icon"
                                                                 title="Delete Order"
                                                             />
-                                                            <EditIcon className="order_action_icon" />
+                                                            <Link to={`/edit-order/${order.orderId}`}>
+                                                                <EditIcon className="order_action_icon" />
+                                                            </Link>
                                                         </p>
                                                     </div>
                                                 </div>

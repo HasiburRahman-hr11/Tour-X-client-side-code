@@ -49,12 +49,15 @@
     background-color:  var(--color-primary);
     color: #fff;
 }
-.order_status{
+p.order_status{
     color: #999;
     font-weight: 600;
     font-size: 16px;
     text-align: right;
     text-transform: capitalize;
+}
+p.order_bookedBy strong{
+    color: #666;
 }
 
 @media only screen and (max-width:900px){
@@ -71,6 +74,13 @@
     }
     .cancel_order{
         margin-top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      
+    }
+    p.order_status{
+        font-size: 18px;
     }
     .order_actions{
         justify-content: flex-start;
