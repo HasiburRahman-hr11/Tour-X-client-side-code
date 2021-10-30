@@ -17,6 +17,8 @@ import { ToastContainer } from "react-toastify";
 import EditOrder from './pages/EditOrder/EditOrder';
 import AllPackages from './pages/AllPackages/AllPackages';
 import EditPackage from './pages/EditPackage/EditPackage';
+import AboutUs from './pages/AboutUs/AboutUs';
+import ContactUs from './pages/ContactUs/ContactUs';
 
 const App = () => {
   const { user } = useAuth();
@@ -30,6 +32,12 @@ const App = () => {
         </Route>
         <Route exact path="/packages">
           <Packages />
+        </Route>
+        <Route exact path="/about">
+          <AboutUs />
+        </Route>
+        <Route exact path="/contact">
+          <ContactUs />
         </Route>
         <PrivateRoute exact path="/packages/add">
           <AddNewPackage />

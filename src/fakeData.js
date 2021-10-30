@@ -3,12 +3,6 @@ import banner2 from './images/banner2.jpg';
 import banner3 from './images/banner3.jpg';
 import banner4 from './images/banner4.jpg';
 
-import package1 from './images/package1.jpg';
-import package2 from './images/package2.jpg';
-import package3 from './images/package3.jpg';
-import package4 from './images/package4.jpg';
-import package5 from './images/package5.jpg';
-
 import testImag1 from './images/team-1.jpg';
 import testImag2 from './images/team-2.jpg';
 import testImag3 from './images/team-3.jpg';
@@ -38,64 +32,6 @@ export const banner = [
 ]
 
 
-export const packages = [
-    {
-        _id: '01',
-        title: 'Paris Hill Tour',
-        description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
-        price: '350',
-        duration: '5 Days 6 Nights',
-        location: 'Paris',
-        thumbnail: package1
-    },
-    {
-        _id: '02',
-        title: 'Lake Garda, Italy',
-        description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
-        price: '430',
-        duration: '6 Days 7 Nights',
-        location: 'Italy',
-        thumbnail: package2
-    },
-    {
-        _id: '03',
-        title: 'Mount Datna, Italy',
-        description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
-        price: '320',
-        duration: '4 Days 5 Nights',
-        location: 'Italy',
-        thumbnail: package3
-    },
-    {
-        _id: '04',
-        title: 'Amalfi Costa, Italy',
-        description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
-        price: '300',
-        duration: '5 Days 6 Nights',
-        location: 'Italy',
-        thumbnail: package4
-    },
-    {
-        _id: '05',
-        title: 'French Rivira, France',
-        description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
-        price: '290',
-        duration: '3 Days 4 Nights',
-        location: 'France',
-        thumbnail: package5
-    },
-    {
-        _id: '06',
-        title: 'Lake Geneva, France',
-        description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
-        price: '350',
-        duration: '5 Days 6 Nights',
-        location: 'France',
-        thumbnail: banner2
-    }
-];
-
-
 export const testimonials = [
     {
         name: 'Dina Jems',
@@ -116,5 +52,26 @@ export const testimonials = [
         name: 'Rebeka Adkins',
         description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
         image: testImag4
+    }
+];
+
+
+
+export const guides = [
+    {
+        name: 'John Curter',
+        image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=580&q=80'
+    },
+    {
+        name: 'Tony Stark',
+        image: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=580&q=80'
+    },
+    {
+        name: 'Maya Martin',
+        image: 'https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=580&q=80'
+    },
+    {
+        name: 'Jack Hunter',
+        image: 'https://images.unsplash.com/photo-1565464027194-7957a2295fb7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80'
     }
 ]

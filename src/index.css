@@ -241,6 +241,33 @@ label.form_control_label{
   color: #444;
 }
 
+
+/* Slick Slider */
+.testimonial_slider_wrapper .slick-dots,
+.guides_slider_wrapper .slick-dots{
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.testimonial_slider_wrapper .slick-dots li,
+.guides_slider_wrapper .slick-dots li{
+  margin: 0 8px;
+}
+.testimonial_slider_wrapper .slick-dots li button ,
+.guides_slider_wrapper .slick-dots li button{ 
+  font-size: 0; 
+  width: 20px;
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 5px;
+  border: 0;
+}
+.testimonial_slider_wrapper .slick-dots li.slick-active button,
+.guides_slider_wrapper .slick-dots li.slick-active button {
+  background-color: var(--color-primary);
+}
+
 @media only screen and (max-width:600px) {
   .section_header h2 {
     font-size: 27px;

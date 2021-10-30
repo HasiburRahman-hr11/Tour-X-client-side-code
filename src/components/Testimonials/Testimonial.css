@@ -37,22 +37,3 @@
     font-size: 15px;
     line-height: 25px;
 }
-.testimonial_slider_wrapper .slick-dots{
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-}
-.testimonial_slider_wrapper .slick-dots li{
-    margin: 0 8px;
-}
-.testimonial_slider_wrapper .slick-dots li button { 
-    font-size: 0; 
-    width: 20px;
-    height: 10px;
-    background-color: #ddd;
-    border-radius: 5px;
-    border: 0;
- }
- .testimonial_slider_wrapper .slick-dots li.slick-active button {
-    background-color: var(--color-primary);
- }
