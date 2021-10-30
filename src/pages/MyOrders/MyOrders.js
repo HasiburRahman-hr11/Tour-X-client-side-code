@@ -16,7 +16,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const MyOrders = () => {
     const { user } = useAuth();
-    const { userOrders, setUserOrders, loading } = useContext(OrderContext);
+    const { userOrders, setUserOrders, loading, orders, setOrders } = useContext(OrderContext);
     const { packages } = useContext(PackageContext);
     const [orderedPackages, setOrderedPackages] = useState([]);
 
@@ -25,10 +25,13 @@ const MyOrders = () => {
         const agree = window.confirm('Cancel this order?');
         if (agree) {
             try {
-                const { data } = await axios.delete(`http://localhost:8000/api/orders/${orderId}`);
+                const { data } = await axios.delete(`https://tour-x-travel-package-api.herokuapp.com/api/orders/${orderId}`);
                 if (data.success) {
                     setOrderedPackages(orderedPackages.filter(pack => pack.orderId !== orderId));
-                    setUserOrders(userOrders.filter(order => order._id !== orderId))
+                    
+                    setUserOrders(userOrders.filter(order => order._id !== orderId));
+                    setOrders(orders.filter(order => order._id !== orderId));
+
                     successNotify('Order canceled successfully.');
                 } else {
                     errorNotify('Couldn\'t cancel the order');
@@ -104,7 +107,7 @@ const MyOrders = () => {
                                                                 </span>
                                                                 <span className="order_price">${order.orderedPackage.price}</span>
                                                             </p>
-                                               
+
                                                         </div>
                                                     ) : (
                                                         <div className="no_order_package">

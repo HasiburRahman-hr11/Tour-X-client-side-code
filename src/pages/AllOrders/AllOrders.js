@@ -26,7 +26,7 @@ const AllOrders = () => {
         const agree = window.confirm('Delete this order?');
         if (agree) {
             try {
-                const { data } = await axios.delete(`http://localhost:8000/api/orders/${orderId}`);
+                const { data } = await axios.delete(`https://tour-x-travel-package-api.herokuapp.com/api/orders/${orderId}`);
                 if (data.success) {
                     setOrderedPackages(orderedPackages.filter(pack => pack.orderId !== orderId));
                     setUserOrders(userOrders.filter(order => order._id !== orderId))

@@ -13,7 +13,7 @@ const useOrders = () => {
 
         const getAllOrders = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:8000/api/orders`);
+                const { data } = await axios.get(`https://tour-x-travel-package-api.herokuapp.com/api/orders`);
                 setOrders(data);
                 setLoading(false);
             } catch (error) {
@@ -25,7 +25,7 @@ const useOrders = () => {
 
         const getUsersOrder = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:8000/api/orders/user/${user._id}`);
+                const { data } = await axios.get(`https://tour-x-travel-package-api.herokuapp.com/api/orders/user/${user._id}`);
                 setUserOrders(data);
                 setLoading(false);
             } catch (error) {

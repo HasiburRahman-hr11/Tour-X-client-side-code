@@ -64,7 +64,7 @@ const Login = () => {
 
     // Create new user in the database
     const createUserToDb = async (userInfo) => {
-        const { data } = await axios.post('http://localhost:8000/api/auth/register', userInfo);
+        const { data } = await axios.post('https://tour-x-travel-package-api.herokuapp.com/api/auth/register', userInfo);
         const userData = {
             _id: data._id,
             email: data.email,

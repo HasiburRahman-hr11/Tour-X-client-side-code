@@ -35,7 +35,7 @@ const EditOrder = () => {
 
         try {
 
-            const { data } = await axios.put(`http://localhost:8000/api/orders/${orderId}`, orderData);
+            const { data } = await axios.put(`https://tour-x-travel-package-api.herokuapp.com/api/orders/${orderId}`, orderData);
 
             const prevOrders = orders.filter(order => order._id !== orderId);
 
@@ -54,7 +54,7 @@ const EditOrder = () => {
     useEffect(() => {
         const fetchOrder = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:8000/api/orders/${orderId}`);
+                const { data } = await axios.get(`https://tour-x-travel-package-api.herokuapp.com/api/orders/${orderId}`);
 
                 if (data._id) {
                     setOrderData({

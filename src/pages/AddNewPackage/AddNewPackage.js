@@ -27,7 +27,7 @@ const AddNewPackage = () => {
         e.preventDefault();
         setLoading(true)
         try {
-            const { data } = await axios.post('http://localhost:8000/api/packages/add', packageData)
+            const { data } = await axios.post('https://tour-x-travel-package-api.herokuapp.com/api/packages/add', packageData)
 
             if (data?._id) {
                 setPackageData({
