@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import { CircularProgress } from '@mui/material';
-import {errorNotify, successNotify} from '../../utils/toastify';
+import { errorNotify, successNotify } from '../../utils/toastify';
+import { PackageContext } from '../../context/PackageContext';
 
 const AddNewPackage = () => {
+
+    const { packages, setPackages } = useContext(PackageContext)
 
     const [packageData, setPackageData] = useState({
         title: '',
@@ -25,7 +28,7 @@ const AddNewPackage = () => {
         setLoading(true)
         try {
             const { data } = await axios.post('http://localhost:8000/api/packages/add', packageData)
-            console.log(data)
+
             if (data?._id) {
                 setPackageData({
                     title: '',
@@ -34,7 +37,8 @@ const AddNewPackage = () => {
                     price: '',
                     location: '',
                     duration: ''
-                })
+                });
+                setPackages([...packages, data])
             }
             successNotify('Package added successfully');
             setLoading(false);
@@ -135,15 +139,15 @@ const AddNewPackage = () => {
                             </div>
 
                             <div className="auth_submit">
-                                <button type="submit" className="btn btn_primary" style={{minWidth:'130px'}}>
-                                {loading ? (
-                                    <CircularProgress sx={{
-                                        color: '#fff',
-                                        width: '25px !important',
-                                        height: '25px !important'
-                                    }}
-                                    />
-                                ) : 'Add Package'}
+                                <button type="submit" className="btn btn_primary" style={{ minWidth: '130px' }}>
+                                    {loading ? (
+                                        <CircularProgress sx={{
+                                            color: '#fff',
+                                            width: '25px !important',
+                                            height: '25px !important'
+                                        }}
+                                        />
+                                    ) : 'Add Package'}
                                 </button>
                             </div>
                         </form>

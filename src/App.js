@@ -15,6 +15,8 @@ import AddNewPackage from './pages/AddNewPackage/AddNewPackage';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import EditOrder from './pages/EditOrder/EditOrder';
+import AllPackages from './pages/AllPackages/AllPackages';
+import EditPackage from './pages/EditPackage/EditPackage';
 
 const App = () => {
   const { user } = useAuth();
@@ -34,6 +36,12 @@ const App = () => {
         </PrivateRoute>
         <PrivateRoute exact path="/packages/:id">
           <SinglePackage />
+        </PrivateRoute>
+        <PrivateRoute exact path="/all-packages">
+          <AllPackages />
+        </PrivateRoute>
+        <PrivateRoute exact path="/edit-package/:id">
+          <EditPackage />
         </PrivateRoute>
         <PrivateRoute exact path="/my-orders">
           <MyOrders />

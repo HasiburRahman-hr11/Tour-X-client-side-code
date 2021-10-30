@@ -50,7 +50,8 @@ const MyOrders = () => {
             userOrders.forEach(order => {
                 if (order.package) {
                     let orderObj = {}
-                    orderObj.orderedPackage = packages.find(item => item._id === order.package);
+                    let orderedPackage = packages.find(item => item._id === order.package);
+                    orderObj.orderedPackage = orderedPackage || {}
                     orderObj.orderId = order._id;
                     orderObj.status = order.status;
                     ordersArray.push(orderObj)
@@ -87,27 +88,30 @@ const MyOrders = () => {
                                             xs={12}
                                         >
                                             <div className="order_item">
-                                                <div className="order_image">
-                                                    <img src={order.orderedPackage.thumbnail} alt="" />
-                                                </div>
-                                                <div className="order_content">
-                                                    <div>
-                                                        <h4>
-                                                            <Link to={`/packages/${order.orderedPackage._id}`}>{order.orderedPackage.title}</Link>
-                                                        </h4>
-                                                        <p>
-                                                            <span className="order_duration">{order.orderedPackage.duration}
-                                                            </span>
-                                                            <span className="order_price">${order.orderedPackage.price}</span>
-                                                        </p>
-
+                                                {order?.orderedPackage?.thumbnail && (
+                                                    <div className="order_image">
+                                                        <img src={order?.orderedPackage?.thumbnail} alt="" />
                                                     </div>
+                                                )}
+                                                <div className="order_content">
+                                                    {order?.orderedPackage?.title ? (
+                                                        <div>
+                                                            <h4>
+                                                                <Link to={`/packages/${order.orderedPackage._id}`}>{order.orderedPackage.title}</Link>
+                                                            </h4>
+                                                            <p>
+                                                                <span className="order_duration">{order.orderedPackage.duration}
+                                                                </span>
+                                                                <span className="order_price">${order.orderedPackage.price}</span>
+                                                            </p>
+                                               
+                                                        </div>
+                                                    ) : (
+                                                        <div className="no_order_package">
+                                                            <h3>Ordered Package Not Found!</h3>
+                                                        </div>
+                                                    )}
                                                     <div className="cancel_order">
-                                                        {/* <button
-                                                            className="btn btn_secondary"
-                                                            title="Cancel Order"
-                                                            onClick={() => handleCancelOrder(order.orderId)}
-                                                        >Cancel</button> */}
                                                         <DeleteOutlineIcon
                                                             onClick={() => handleCancelOrder(order.orderId)}
                                                             className="order_action_icon"

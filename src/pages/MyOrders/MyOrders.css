@@ -59,7 +59,9 @@ p.order_status{
 p.order_bookedBy strong{
     color: #666;
 }
-
+.no_order_package{
+    color: #f75959;
+}
 @media only screen and (max-width:900px){
     .order_item{
         flex-direction: column;

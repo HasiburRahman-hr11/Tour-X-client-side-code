@@ -16,12 +16,14 @@ import Logout from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 import useAuth from '../../hooks/useAuth';
 import { OrderContext } from '../../context/OrderContext';
+import { PackageContext } from '../../context/PackageContext';
 
 const Header = () => {
 
     const { user, logOutController } = useAuth();
 
     const { userOrders, orders } = useContext(OrderContext);
+    const { packages } = useContext(PackageContext);
 
     const [menuOpen, setMenuOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -130,6 +132,10 @@ const Header = () => {
                                         <MenuItem>
                                             <Avatar  >{orders.length}</Avatar >
                                             <Link to="/all-orders" className="menu_link">All Orders</Link>
+                                        </MenuItem>
+                                        <MenuItem>
+                                            <Avatar  >{packages.length}</Avatar >
+                                            <Link to="/all-packages" className="menu_link">All Packages</Link>
                                         </MenuItem>
                                         <MenuItem>
                                             <ListItemIcon>

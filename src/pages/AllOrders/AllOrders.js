@@ -49,7 +49,8 @@ const AllOrders = () => {
             orders.forEach(order => {
                 if (order.package) {
                     let orderObj = {}
-                    orderObj.orderedPackage = packages.find(item => item._id === order.package);
+                    let orderedPackage = packages.find(item => item._id === order.package);
+                    orderObj.orderedPackage = orderedPackage || {}
                     orderObj.orderId = order._id;
                     orderObj.bookedBy = order.name;
                     orderObj.status = order.status;
@@ -85,24 +86,34 @@ const AllOrders = () => {
                                             xs={12}
                                         >
                                             <div className="order_item">
-                                                <div className="order_image">
-                                                    <img src={order.orderedPackage.thumbnail} alt="" />
-                                                </div>
-                                                <div className="order_content">
-                                                    <div>
-                                                        <h4>
-                                                            <Link to={`/packages/${order.orderedPackage._id}`}>{order.orderedPackage.title}</Link>
-                                                        </h4>
-                                                        <p>
-                                                            <span className="order_duration">{order.orderedPackage.duration}
-                                                            </span>
-                                                            <span className="order_price">${order.orderedPackage.price}</span>
-                                                        </p>
-                                                        <p className="order_bookedBy">
-                                                            Booked by: <strong>{order.bookedBy}</strong>
-                                                        </p>
-
+                                                {order?.orderedPackage?.thumbnail && (
+                                                    <div className="order_image">
+                                                        <img src={order?.orderedPackage?.thumbnail} alt="" />
                                                     </div>
+                                                )}
+
+                                                <div className="order_content">
+                                                    {order?.orderedPackage?.title ? (
+                                                        <div>
+                                                            <h4>
+                                                                <Link to={`/packages/${order.orderedPackage._id}`}>{order.orderedPackage.title}</Link>
+                                                            </h4>
+                                                            <p>
+                                                                <span className="order_duration">{order.orderedPackage.duration}
+                                                                </span>
+                                                                <span className="order_price">${order.orderedPackage.price}</span>
+                                                            </p>
+                                                            <p className="order_bookedBy">
+                                                                Booked by: <strong>{order.bookedBy}</strong>
+                                                            </p>
+
+                                                        </div>
+                                                    ) : (
+                                                        <div className="no_order_package">
+                                                            <h3>Ordered Package Not Found!</h3>
+                                                        </div>
+                                                    )}
+
                                                     <div className="cancel_order">
                                                         <p className="order_status">{order.status}</p>
                                                         <p className="order_actions">
