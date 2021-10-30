@@ -6,13 +6,27 @@ const useOrders = () => {
 
     const { user } = useAuth();
     const [orders, setOrders] = useState([]);
+    const [userOrders, setUserOrders] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+
+        const getAllOrders = async () => {
+            try {
+                const { data } = await axios.get(`http://localhost:8000/api/orders`);
+                setOrders(data);
+                setLoading(false);
+            } catch (error) {
+                console.log(error);
+                setLoading(false);
+            }
+        }
+        getAllOrders();
+
         const getUsersOrder = async () => {
             try {
                 const { data } = await axios.get(`http://localhost:8000/api/orders/${user._id}`);
-                setOrders(data);
+                setUserOrders(data);
                 setLoading(false);
             } catch (error) {
                 console.log(error);
@@ -27,6 +41,8 @@ const useOrders = () => {
     return {
         orders,
         setOrders,
+        userOrders,
+        setUserOrders,
         loading,
         setLoading
     }

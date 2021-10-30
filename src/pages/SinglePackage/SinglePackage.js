@@ -1,5 +1,5 @@
 import { Container, Grid } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import Loading from '../../components/Loading/Loading';
 import PageBanner from '../../components/PageBanner/PageBanner';
@@ -9,10 +9,11 @@ import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 import { errorNotify, successNotify } from '../../utils/toastify';
 import useOrders from '../../hooks/useOrders';
+import { OrderContext } from '../../context/OrderContext';
 
 const SinglePackage = () => {
 
-    const { orders, setOrders } = useOrders();
+    const { orders, setOrders , userOrders, setUserOrders } = useContext(OrderContext);
     const { id } = useParams();
     const { user } = useAuth();
     const history = useHistory();
@@ -41,6 +42,7 @@ const SinglePackage = () => {
             const { data } = await axios.post('http://localhost:8000/api/orders/add', bookingData);
             if (data._id) {
                 setOrders([...orders, data])
+                setUserOrders([...userOrders, data])
                 successNotify('Booking Successful.');
                 history.push('/my-orders')
             }

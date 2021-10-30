@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Header.css';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -15,14 +15,13 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Logout from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 import useAuth from '../../hooks/useAuth';
-import axios from 'axios';
-import useOrders from '../../hooks/useOrders';
+import { OrderContext } from '../../context/OrderContext';
 
 const Header = () => {
 
     const { user, logOutController } = useAuth();
 
-    const { orders } = useOrders();
+    const { userOrders, orders } = useContext(OrderContext);
 
     const [menuOpen, setMenuOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -118,9 +117,7 @@ const Header = () => {
                                             <Avatar /> Hello {user?.displayName?.split(' ')[0]}
                                         </MenuItem>
                                         <MenuItem>
-                                            <Avatar sx={{
-                                                backgroundColor: 'var(--color-primary)'
-                                            }} >{orders.length}</Avatar >
+                                            <Avatar >{userOrders.length}</Avatar >
                                             <Link to="/my-orders" className="menu_link">My Orders</Link>
                                         </MenuItem>
                                         <MenuItem onClick={handleLogout}>
@@ -131,6 +128,7 @@ const Header = () => {
                                         </MenuItem>
                                         <Divider />
                                         <MenuItem>
+                                            <Avatar  >{orders.length}</Avatar >
                                             <Link to="/all-orders" className="menu_link">All Orders</Link>
                                         </MenuItem>
                                         <MenuItem>

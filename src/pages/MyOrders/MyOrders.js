@@ -10,27 +10,28 @@ import useAuth from '../../hooks/useAuth';
 import { errorNotify, successNotify } from '../../utils/toastify';
 import Loading from '../../components/Loading/Loading';
 import { PackageContext } from '../../context/PackageContext';
-import useOrders from '../../hooks/useOrders';
+import { OrderContext } from '../../context/OrderContext';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 
 const MyOrders = () => {
     const { user } = useAuth();
-    const { orders, setOrders, loading } = useOrders();
+    const { userOrders, setUserOrders, loading } = useContext(OrderContext);
     const { packages } = useContext(PackageContext);
     const [orderedPackages, setOrderedPackages] = useState([]);
 
 
     const handleCancelOrder = async (orderId) => {
-        const agree = window.confirm('Are you sure?');
+        const agree = window.confirm('Cancel this order?');
         if (agree) {
             try {
                 const { data } = await axios.delete(`http://localhost:8000/api/orders/${orderId}`);
                 if (data.success) {
                     setOrderedPackages(orderedPackages.filter(pack => pack.orderId !== orderId));
-                    setOrders(orders.filter(order => order._id !== orderId))
-                    successNotify('Order deleted successfully.');
+                    setUserOrders(userOrders.filter(order => order._id !== orderId))
+                    successNotify('Order canceled successfully.');
                 } else {
-                    errorNotify('Couldn\'t delete the order');
+                    errorNotify('Couldn\'t cancel the order');
                 }
             } catch (error) {
                 console.log(error);
@@ -43,19 +44,6 @@ const MyOrders = () => {
 
 
     useEffect(() => {
-        // const getUsersOrder = async () => {
-        //     try {
-        //         const { data } = await axios.get(`http://localhost:8000/api/orders/${user._id}`);
-
-        //         setOrders(data);
-        //         getOrderedPackages(data)
-        //         setLoading(false);
-        //     } catch (error) {
-        //         console.log(error);
-        //         setLoading(false);
-        //     }
-        // }
-        // getUsersOrder();
 
         const getOrderedPackages = (data) => {
             const packagesArray = [];
@@ -72,9 +60,9 @@ const MyOrders = () => {
             setOrderedPackages(packagesArray)
         }
 
-        getOrderedPackages(orders);
+        getOrderedPackages(userOrders);
 
-    }, [user._id, packages, orders])
+    }, [user._id, packages, userOrders])
     return (
         <>
             {loading ? (
@@ -104,7 +92,9 @@ const MyOrders = () => {
                                                 </div>
                                                 <div className="order_content">
                                                     <div>
-                                                        <h4>{order.title}</h4>
+                                                        <h4>
+                                                            <Link to={`/packages/${order._id}`}>{order.title}</Link>
+                                                        </h4>
                                                         <p>
                                                             <span className="order_duration">{order.duration}
                                                             </span>
@@ -113,11 +103,16 @@ const MyOrders = () => {
 
                                                     </div>
                                                     <div className="cancel_order">
-                                                        <button
+                                                        {/* <button
                                                             className="btn btn_secondary"
                                                             title="Cancel Order"
                                                             onClick={() => handleCancelOrder(order.orderId)}
-                                                        >Cancel</button>
+                                                        >Cancel</button> */}
+                                                        <DeleteOutlineIcon 
+                                                            onClick={() => handleCancelOrder(order.orderId)}
+                                                            className="order_action_icon"
+                                                            title="Delete Order"
+                                                            />
                                                     </div>
                                                 </div>
                                             </div>
