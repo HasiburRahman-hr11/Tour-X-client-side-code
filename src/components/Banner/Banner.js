@@ -1,12 +1,12 @@
-import React from 'react';
 import './Banner.css';
 import { Link } from 'react-router-dom';
 import Slider from "react-slick";
-import { banner } from '../../fakeData';
 import Container from '@mui/material/Container';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
+
+/* --------- Slick Custom Arrow Components ---------- */
 function SampleNextArrow(props) {
     const { onClick } = props;
     return (
@@ -30,8 +30,10 @@ function SamplePrevArrow(props) {
         </button>
     );
 }
+/* --------- Slick Custom Arrow Components ---------- */
 
-const Banner = () => {
+const Banner = ({packages}) => {
+
     const settings = {
         dots: false,
         infinite: true,
@@ -47,14 +49,14 @@ const Banner = () => {
     return (
         <Slider {...settings}>
 
-            {banner.map((item, ind) => (
-                <div key={ind} className="banner_item">
-                    <img src={item.image} alt={item.title} />
+            {packages.slice(0, 4).map((item, ind) => (
+                <div key={item._id} className="banner_item">
+                    <img src={item.thumbnail} alt={item.title} />
                     <div className="banner_content">
                         <Container>
-                            <h1>{item.title}</h1>
+                            <h1>Amazing Tour in {item.location}</h1>
                             <h4>{item.duration}</h4>
-                            <Link to="/packages" className="banner_btn">Book Now</Link>
+                            <Link to={`/packages/${item._id}`} className="banner_btn">Book Now</Link>
                         </Container>
                     </div>
                 </div>

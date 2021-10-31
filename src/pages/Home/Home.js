@@ -15,7 +15,7 @@ const Home = () => {
                 <Loading />
             ) : (
                 <>
-                    <Banner />
+                    <Banner packages={packages} />
                     <PackagesSection packages={packages} />
                     <Offer />
                     <Testimonial />

@@ -1,35 +1,7 @@
-import banner1 from './images/banner1.jpg';
-import banner2 from './images/banner2.jpg';
-import banner3 from './images/banner3.jpg';
-import banner4 from './images/banner4.jpg';
-
 import testImag1 from './images/team-1.jpg';
 import testImag2 from './images/team-2.jpg';
 import testImag3 from './images/team-3.jpg';
 import testImag4 from './images/team-4.jpg';
-
-export const banner = [
-    {
-        title: 'Amazing Tour in Indonesia',
-        duration: '5 Days, 6 Nights',
-        image: banner1
-    },
-    {
-        title: 'Amazing Tour in Madagascar',
-        duration: '7 Days, 8 Nights',
-        image: banner2
-    },
-    {
-        title: 'Amazing Tour in Hawai',
-        duration: '6 Days, 7 Nights',
-        image: banner3
-    },
-    {
-        title: 'Amazing Tour in Norway',
-        duration: '7 Days, 8 Nights',
-        image: banner4
-    }
-]
 
 
 export const testimonials = [
