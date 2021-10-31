@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Container from '@mui/material/Container';
 import googleIcon from '../../images/google-icon.png';
 import { Link, useLocation, useHistory } from 'react-router-dom';
@@ -8,7 +8,7 @@ import axios from 'axios';
 import { CircularProgress } from '@mui/material';
 
 const Register = () => {
-    const { user, googleSignIn, setUser, setError, error } = useAuth();
+    const { googleSignIn, setUser, setError } = useAuth();
     const location = useLocation();
     const path = location.state?.from?.pathname || '/';
     const history = useHistory();
@@ -24,8 +24,6 @@ const Register = () => {
     const [serverError, setServerError] = useState('');
     const [loading, setLoading] = useState(false);
 
-
-
     const errors = {
         userName: '',
         email: '',
@@ -38,9 +36,6 @@ const Register = () => {
         e.preventDefault();
         formValidation();
         setSignUpErrors({ ...errors });
-
-
-
 
         if (errors.isValidated) {
             handleFirebaseSignUp(formData);
@@ -98,6 +93,8 @@ const Register = () => {
         });
     }
 
+
+    // Validate Registration Form
     const formValidation = () => {
 
         const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -131,7 +128,7 @@ const Register = () => {
         }
     }
 
-
+    // Handle Sign inn using Google
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then(() => {

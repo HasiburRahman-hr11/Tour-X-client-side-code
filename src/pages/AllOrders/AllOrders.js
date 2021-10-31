@@ -44,6 +44,7 @@ const AllOrders = () => {
 
     useEffect(() => {
 
+        // Get Package Details from Orders using package id
         const getOrderedPackages = () => {
             const ordersArray = [];
             orders.forEach(order => {

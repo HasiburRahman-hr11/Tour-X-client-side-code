@@ -21,6 +21,8 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const [serverError, setServerError] = useState('');
 
+
+    // Handle Sign is Using Email and Password
     const handleSignIn = async (e) => {
         e.preventDefault();
         setLoading(true)
@@ -46,6 +48,7 @@ const Login = () => {
 
     }
 
+    // Handle Sign inn using Google
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then((result) => {

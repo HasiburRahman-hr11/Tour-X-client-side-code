@@ -41,8 +41,8 @@ const SinglePackage = () => {
         try {
             const { data } = await axios.post('https://tour-x-travel-package-api.herokuapp.com/api/orders/add', bookingData);
             if (data._id) {
-                setOrders([...orders, data])
-                setUserOrders([...userOrders, data])
+                setOrders([data , ...orders])
+                setUserOrders([data , ...userOrders])
                 successNotify('Booking Successful.');
                 history.push('/my-orders')
             }
