@@ -67,17 +67,17 @@ const Header = () => {
                         <div className={menuOpen ? `header_right active` : 'header_right'}>
                             <CloseIcon className="menu_close" onClick={() => setMenuOpen(false)} />
                             <nav>
-                                <ul className="main_menu" onClick={() => setMenuOpen(false)}>
-                                    <li className="menu_item">
+                                <ul className="main_menu">
+                                    <li className="menu_item" onClick={() => setMenuOpen(false)}>
                                         <NavLink exact to="/" activeClassName="active">Home</NavLink>
                                     </li>
-                                    <li className="menu_item">
+                                    <li className="menu_item" onClick={() => setMenuOpen(false)}>
                                         <NavLink exact to="/packages" activeClassName="active">Packages</NavLink>
                                     </li>
-                                    <li className="menu_item">
+                                    <li className="menu_item" onClick={() => setMenuOpen(false)}>
                                         <NavLink exact to="/about" activeClassName="active">About Us</NavLink>
                                     </li>
-                                    <li className="menu_item">
+                                    <li className="menu_item" onClick={() => setMenuOpen(false)}>
                                         <NavLink exact to="/contact" activeClassName="active">Contact Us</NavLink>
                                     </li>
 
@@ -125,29 +125,32 @@ const Header = () => {
                                         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                                     >
 
-                                        <MenuItem>
+                                        <MenuItem onClick={() => setMenuOpen(false)}>
                                             <Avatar /> Hello {user?.displayName?.split(' ')[0]}
                                         </MenuItem>
-                                        <MenuItem>
+                                        <MenuItem onClick={() => setMenuOpen(false)}>
                                             <Avatar >{userOrders.length}</Avatar >
                                             <Link to="/my-orders" className="menu_link">My Orders</Link>
                                         </MenuItem>
-                                        <MenuItem onClick={handleLogout}>
+                                        <MenuItem onClick={() => {
+                                            handleLogout();
+                                            setMenuOpen(false);
+                                        }}>
                                             <ListItemIcon>
                                                 <Logout fontSize="small" />
                                             </ListItemIcon>
                                             Logout
                                         </MenuItem>
                                         <Divider />
-                                        <MenuItem>
+                                        <MenuItem onClick={() => setMenuOpen(false)}>
                                             <Avatar  >{orders.length}</Avatar >
                                             <Link to="/all-orders" className="menu_link">All Orders</Link>
                                         </MenuItem>
-                                        <MenuItem>
+                                        <MenuItem onClick={() => setMenuOpen(false)}>
                                             <Avatar  >{packages.length}</Avatar >
                                             <Link to="/all-packages" className="menu_link">All Packages</Link>
                                         </MenuItem>
-                                        <MenuItem>
+                                        <MenuItem onClick={() => setMenuOpen(false)}>
                                             <ListItemIcon>
                                                 <AddCircleIcon fontSize="small" />
                                             </ListItemIcon>
