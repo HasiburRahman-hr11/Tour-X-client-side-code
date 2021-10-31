@@ -3,7 +3,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Package from '../../components/Package/Package';
 import PageBanner from '../../components/PageBanner/PageBanner';
-import pageBannerBg from '../../images/pageBanner/package-page.jpg';
 import Loading from '../../components/Loading/Loading';
 import { PackageContext } from '../../context/PackageContext';
 const Packages = () => {
@@ -15,7 +14,7 @@ const Packages = () => {
                 <Loading />
             ) : (
                 <div className="page packages">
-                    <PageBanner title="Our Packages" bg={pageBannerBg} />
+                    <PageBanner title="Our Packages" bg="https://images.pexels.com/photos/3788363/pexels-photo-3788363.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" />
                     <div className="page_content">
                         <Container fixed>
                             <Grid container spacing={4}>

@@ -3,7 +3,6 @@ import '../MyOrders/MyOrders.css';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import PageBanner from '../../components/PageBanner/PageBanner';
-import pageBannerBg from '../../images/pageBanner/my-order-page.jpg';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { PackageContext } from '../../context/PackageContext';
@@ -70,7 +69,7 @@ const AllOrders = () => {
                 <Loading />
             ) : (
                 <div className="page my_orders">
-                    <PageBanner title="All Orders" bg={pageBannerBg} />
+                    <PageBanner title="All Orders" bg="https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"/>
                     <div className="page_content">
                         <Container fixed>
                             {orderedPackages.length < 1 ? (

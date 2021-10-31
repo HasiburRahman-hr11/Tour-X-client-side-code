@@ -4,7 +4,6 @@ import './MyOrders.css';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import PageBanner from '../../components/PageBanner/PageBanner';
-import pageBannerBg from '../../images/pageBanner/my-order-page.jpg';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 import { errorNotify, successNotify } from '../../utils/toastify';
@@ -74,7 +73,7 @@ const MyOrders = () => {
                 <Loading />
             ) : (
                 <div className="page my_orders">
-                    <PageBanner title="My Orders" bg={pageBannerBg} />
+                    <PageBanner title="My Orders" bg="https://images.pexels.com/photos/3116335/pexels-photo-3116335.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" />
                     <div className="page_content">
                         <Container fixed>
                             {orderedPackages.length < 1 ? (
