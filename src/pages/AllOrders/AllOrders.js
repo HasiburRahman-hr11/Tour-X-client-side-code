@@ -16,7 +16,7 @@ import { errorNotify, successNotify } from '../../utils/toastify';
 
 const AllOrders = () => {
 
-    const { orders, loading, userOrders, setUserOrders } = useContext(OrderContext);
+    const { orders, loading, userOrders, setUserOrders , setOrders } = useContext(OrderContext);
     const { packages } = useContext(PackageContext);
     const [orderedPackages, setOrderedPackages] = useState([]);
 
@@ -28,7 +28,7 @@ const AllOrders = () => {
             try {
                 const { data } = await axios.delete(`https://tour-x-travel-package-api.herokuapp.com/api/orders/${orderId}`);
                 if (data.success) {
-                    setOrderedPackages(orderedPackages.filter(pack => pack.orderId !== orderId));
+                    setOrders(orders.filter(order => order._id !== orderId))
                     setUserOrders(userOrders.filter(order => order._id !== orderId))
                     successNotify('Order deleted successfully.');
                 } else {
