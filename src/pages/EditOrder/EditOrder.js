@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import {useHistory} from 'react-router-dom';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -12,6 +13,7 @@ import { OrderContext } from '../../context/OrderContext';
 
 const EditOrder = () => {
 
+    const history = useHistory();
     const { orderId } = useParams();
     const { orders, setOrders } = useContext(OrderContext);
 
@@ -42,7 +44,8 @@ const EditOrder = () => {
             setOrders([...prevOrders, data])
 
             setLoading(false);
-            successNotify('Order Updated Successfully.')
+            successNotify('Order Updated Successfully.');
+            history.push('/all-orders');
         } catch (error) {
             console.log(error);
             setLoading(false);

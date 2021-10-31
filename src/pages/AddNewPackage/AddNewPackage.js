@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import {useHistory} from 'react-router-dom';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -9,7 +10,7 @@ import { errorNotify, successNotify } from '../../utils/toastify';
 import { PackageContext } from '../../context/PackageContext';
 
 const AddNewPackage = () => {
-
+    const history = useHistory();
     const { packages, setPackages } = useContext(PackageContext)
 
     const [packageData, setPackageData] = useState({
@@ -38,9 +39,11 @@ const AddNewPackage = () => {
                     location: '',
                     duration: ''
                 });
-                setPackages([...packages, data])
+                setPackages([ data , ...packages]);
+                successNotify('Package added successfully');
+                history.push('/all-packages');
             }
-            successNotify('Package added successfully');
+           
             setLoading(false);
         } catch (error) {
             console.log(error);
