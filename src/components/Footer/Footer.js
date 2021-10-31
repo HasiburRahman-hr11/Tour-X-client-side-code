@@ -8,6 +8,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import ToTop from '../ToTop/ToTop';
 
 const Footer = () => {
     return (
@@ -75,7 +76,7 @@ const Footer = () => {
                                             <Link to="/login">Login</Link>
                                         </li>
                                         <li>
-                                            <Link to="/my-orders">Booking</Link>
+                                            <Link to="/my-orders">My Orders</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -103,6 +104,7 @@ const Footer = () => {
                     <p>© 2021 HR Hasib, All Rights Reserved</p>
                 </div>
             </div>
+            <ToTop/>
         </footer>
     );
 };

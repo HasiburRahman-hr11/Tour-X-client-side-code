@@ -19,6 +19,7 @@ import AllPackages from './pages/AllPackages/AllPackages';
 import EditPackage from './pages/EditPackage/EditPackage';
 import AboutUs from './pages/AboutUs/AboutUs';
 import ContactUs from './pages/ContactUs/ContactUs';
+import PageScroll from './components/PageScroll/PageScroll';
 
 const App = () => {
   const { user } = useAuth();
@@ -26,6 +27,7 @@ const App = () => {
     <BrowserRouter>
       <Header />
       <ToastContainer />
+      <PageScroll/>
       <Switch>
         <Route exact path="/">
           <Home />
