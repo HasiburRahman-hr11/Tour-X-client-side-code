@@ -25,22 +25,32 @@ const Header = () => {
     const { userOrders, orders } = useContext(OrderContext);
     const { packages } = useContext(PackageContext);
 
+    const [sticky, setSticky] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+
+    // Material UI Menu
     const handleMenuIconClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
     const handleMenuIconClose = () => {
         setAnchorEl(null);
     };
+
+    //  Firebase Logout
     const handleLogout = () => {
         logOutController()
     }
 
+    // Set Sticky Menu
+    window.onscroll = (e) => {
+        setSticky(window.pageYOffset > 500 ? true : false)
+        return () => (window.onscroll = null)
+    }
 
     return (
-        <header className="header">
+        <header className={sticky ? 'header sticky' : 'header'}>
             <Container fixed>
                 <Grid container sx={{
                     alignItems: 'center',

@@ -6,6 +6,28 @@
     align-items: center;
 }
 
+.header.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    border-bottom: 1px solid #ddd;
+    transition: all 0.5s ease;
+    animation: sticky 0.6s ease;
+}
+
+@keyframes sticky {
+    from{
+        top: -100%;
+        opacity: 0;
+    }
+    to{
+        top: 0;
+        opacity: 1;
+    }
+}
+
 .logo {
     max-width: 110px;
 }
@@ -58,7 +80,7 @@ ul.main_menu li a.active {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.menu_link{
+.menu_link {
     width: 100%;
     display: inline-block;
 }
