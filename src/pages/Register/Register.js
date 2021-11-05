@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 import Container from '@mui/material/Container';
 import googleIcon from '../../images/google-icon.png';
 import { Link, useLocation, useHistory } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import useAuth from '../../hooks/useAuth';
 import axios from 'axios';
 import { CircularProgress } from '@mui/material';
 
 const Register = () => {
-    const { googleSignIn, setUser, setError } = useAuth();
+    const { googleSignIn, firebaseSignUp, updateUsersProfile, setUser, setError } = useAuth();
     const location = useLocation();
     const path = location.state?.from?.pathname || '/';
     const history = useHistory();
-    const auth = getAuth();
 
     const [formData, setFormData] = useState({
         userName: '',
@@ -48,7 +46,7 @@ const Register = () => {
     // Firebase Sign Up Using Email and Password
     const handleFirebaseSignUp = (data) => {
         setLoading(true);
-        createUserWithEmailAndPassword(auth, data.email, data.password)
+        firebaseSignUp(data.email, data.password)
             .then(() => {
                 updateUsersProfile(data);
                 createUserToDb({
@@ -68,29 +66,17 @@ const Register = () => {
 
     // Create new user in the database
     const createUserToDb = async (userInfo) => {
-        const { data } = await axios.post('https://tour-x-travel-package-api.herokuapp.com/api/auth/register', userInfo);
+        const { data } = await axios.post('http://localhost:8000/api/auth/register', userInfo);
         const userData = {
             _id: data._id,
             email: data.email,
-            displayName: data.userName
+            displayName: data.userName,
+            isAdmin:data.isAdmin
         }
         if (data._id) {
             setUser(userData)
             localStorage.setItem('tour-x-user', JSON.stringify(userData));
         }
-    }
-
-    // Update Firebase User State after registration
-    const updateUsersProfile = (data) => {
-        updateProfile(auth.currentUser, {
-            displayName: data.userName,
-            email: data.email
-        }).then(() => {
-            console.log('Profile Updated')
-        }).catch((error) => {
-            console.log(error);
-            setError(error);
-        });
     }
 
 

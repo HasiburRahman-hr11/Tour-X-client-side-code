@@ -8,7 +8,7 @@ const usePackages = () => {
     useEffect(() => {
         const getAllPackages = async () => {
             try {
-                const { data } = await axios.get('https://tour-x-travel-package-api.herokuapp.com/api/packages');
+                const { data } = await axios.get('http://localhost:8000/api/packages');
                 setPackages(data);
                 setLoading(false);
             } catch (error) {

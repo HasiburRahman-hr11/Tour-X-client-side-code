@@ -3,13 +3,12 @@ import Container from '@mui/material/Container';
 import googleIcon from '../../images/google-icon.png';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import axios from 'axios';
 import { CircularProgress } from '@mui/material';
 
 const Login = () => {
 
-    const { googleSignIn, setUser, setError } = useAuth();
+    const { googleSignIn, firebaseSignIn, setUser, setError } = useAuth();
     const location = useLocation();
     const history = useHistory();
     const path = location.state?.from.pathname || '/';
@@ -26,8 +25,7 @@ const Login = () => {
     const handleSignIn = async (e) => {
         e.preventDefault();
         setLoading(true)
-        const auth = getAuth();
-        signInWithEmailAndPassword(auth, formData.email, formData.password)
+        firebaseSignIn( formData.email, formData.password)
             .then((result) => {
                 const user = result.user;
                 setUser(user)
@@ -67,11 +65,12 @@ const Login = () => {
 
     // Create new user in the database
     const createUserToDb = async (userInfo) => {
-        const { data } = await axios.post('https://tour-x-travel-package-api.herokuapp.com/api/auth/register', userInfo);
+        const { data } = await axios.post('http://localhost:8000/api/auth/register', userInfo);
         const userData = {
             _id: data._id,
             email: data.email,
-            displayName: data.userName
+            displayName: data.userName,
+            isAdmin:data.isAdmin
         }
         if (data._id) {
             setUser(userData);

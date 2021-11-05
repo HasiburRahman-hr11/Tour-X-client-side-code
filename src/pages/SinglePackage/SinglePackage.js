@@ -39,7 +39,7 @@ const SinglePackage = () => {
         }
 
         try {
-            const { data } = await axios.post('https://tour-x-travel-package-api.herokuapp.com/api/orders/add', bookingData);
+            const { data } = await axios.post('http://localhost:8000/api/orders/add', bookingData);
             if (data._id) {
                 setOrders([data , ...orders])
                 setUserOrders([data , ...userOrders])
@@ -56,7 +56,7 @@ const SinglePackage = () => {
 
         const getSinglePackage = async () => {
             try {
-                const { data } = await axios.get(`https://tour-x-travel-package-api.herokuapp.com/api/packages/${id}`);
+                const { data } = await axios.get(`http://localhost:8000/api/packages/${id}`);
 
                 setSinglePackage(data);
                 setLoading(false);

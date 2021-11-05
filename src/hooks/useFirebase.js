@@ -1,7 +1,6 @@
-import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword , updateProfile , signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeFirebaseApp from "../Firebase/firebase.init";
-import axios from 'axios';
 
 initializeFirebaseApp();
 
@@ -17,6 +16,27 @@ const useFirebase = () => {
 
     const googleSignIn = () => {
         return signInWithPopup(auth, googleProvider)
+    }
+
+    const firebaseSignUp = (email , password) =>{
+        return createUserWithEmailAndPassword(auth , email , password)
+    }
+
+
+    const updateUsersProfile = (data) => {
+        updateProfile(auth.currentUser, {
+            displayName: data.userName,
+            email: data.email
+        }).then(() => {
+            console.log('Profile Updated')
+        }).catch((error) => {
+            console.log(error);
+            setError(error);
+        });
+    }
+
+    const firebaseSignIn = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password)
     }
 
     const logOutController = () => {
@@ -38,7 +58,8 @@ const useFirebase = () => {
                     const userInfo = {
                         _id: localUser._id,
                         email: user.email,
-                        displayName: user.displayName
+                        displayName: user.displayName,
+                        isAdmin:localUser.isAdmin
                     }
                     setUser(userInfo);
                 } else {
@@ -58,6 +79,9 @@ const useFirebase = () => {
         error,
         loading,
         googleSignIn,
+        firebaseSignUp,
+        updateUsersProfile,
+        firebaseSignIn,
         logOutController,
         setLoading,
         setError,

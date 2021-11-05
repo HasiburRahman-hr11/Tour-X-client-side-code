@@ -33,7 +33,7 @@ const EditPackage = () => {
 
         try {
 
-            const { data } = await axios.put(`https://tour-x-travel-package-api.herokuapp.com/api/packages/${id}`, packageData);
+            const { data } = await axios.put(`http://localhost:8000/api/packages/${id}`, packageData);
 
             const prevPackages = packages.filter(order => order._id !== id);
 
@@ -51,7 +51,7 @@ const EditPackage = () => {
     useEffect(() => {
         const fetchPackage = async () => {
             try {
-                const { data } = await axios.get(`https://tour-x-travel-package-api.herokuapp.com/api/packages/${id}`);
+                const { data } = await axios.get(`http://localhost:8000/api/packages/${id}`);
 
                 if (data._id) {
                     setPackageData({

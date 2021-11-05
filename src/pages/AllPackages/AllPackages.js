@@ -20,7 +20,7 @@ const AllPackages = () => {
         const agree = window.confirm('Delete this package?');
         if (agree) {
             try {
-                const { data } = await axios.delete(`https://tour-x-travel-package-api.herokuapp.com/api/packages/${packId}`);
+                const { data } = await axios.delete(`http://localhost:8000/api/packages/${packId}`);
                 if (data.success) {
                     setPackages(packages.filter(pack => pack._id !== packId));
                     successNotify('Package deleted successfully.');

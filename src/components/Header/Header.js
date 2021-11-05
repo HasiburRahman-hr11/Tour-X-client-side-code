@@ -17,10 +17,11 @@ import IconButton from '@mui/material/IconButton';
 import useAuth from '../../hooks/useAuth';
 import { OrderContext } from '../../context/OrderContext';
 import { PackageContext } from '../../context/PackageContext';
+import Loading from '../Loading/Loading'
 
 const Header = () => {
 
-    const { user, logOutController } = useAuth();
+    const { user, logOutController , loading } = useAuth();
 
     const { userOrders, orders } = useContext(OrderContext);
     const { packages } = useContext(PackageContext);
@@ -47,6 +48,10 @@ const Header = () => {
     window.onscroll = (e) => {
         setSticky(window.pageYOffset > 500 ? true : false)
         return () => (window.onscroll = null)
+    }
+
+    if(loading){
+        return <Loading/>
     }
 
     return (
@@ -141,21 +146,25 @@ const Header = () => {
                                             </ListItemIcon>
                                             Logout
                                         </MenuItem>
-                                        <Divider />
-                                        <MenuItem onClick={() => setMenuOpen(false)}>
-                                            <Avatar  >{orders.length}</Avatar >
-                                            <Link to="/all-orders" className="menu_link">All Orders</Link>
-                                        </MenuItem>
-                                        <MenuItem onClick={() => setMenuOpen(false)}>
-                                            <Avatar  >{packages.length}</Avatar >
-                                            <Link to="/all-packages" className="menu_link">All Packages</Link>
-                                        </MenuItem>
-                                        <MenuItem onClick={() => setMenuOpen(false)}>
-                                            <ListItemIcon>
-                                                <AddCircleIcon fontSize="small" />
-                                            </ListItemIcon>
-                                            <Link to="/packages/add" className="menu_link">Add new package</Link>
-                                        </MenuItem>
+                                        {user?.isAdmin && (
+                                            <>
+                                                <Divider />
+                                                <MenuItem onClick={() => setMenuOpen(false)}>
+                                                    <Avatar  >{orders.length}</Avatar >
+                                                    <Link to="/all-orders" className="menu_link">All Orders</Link>
+                                                </MenuItem>
+                                                <MenuItem onClick={() => setMenuOpen(false)}>
+                                                    <Avatar  >{packages.length}</Avatar >
+                                                    <Link to="/all-packages" className="menu_link">All Packages</Link>
+                                                </MenuItem>
+                                                <MenuItem onClick={() => setMenuOpen(false)}>
+                                                    <ListItemIcon>
+                                                        <AddCircleIcon fontSize="small" />
+                                                    </ListItemIcon>
+                                                    <Link to="/packages/add" className="menu_link">Add new package</Link>
+                                                </MenuItem>
+                                            </>
+                                        )}
 
 
                                     </Menu>
